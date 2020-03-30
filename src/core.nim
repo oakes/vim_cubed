@@ -32,9 +32,8 @@ proc initThreeDMetaTextureEntity(posData: openArray[GLfloat], texcoordData: open
   )
 
 var entity: ThreeDMetaTextureEntity
-var rx = degToRad(190f)
+var rx = degToRad(180f)
 var ry = degToRad(40f)
-const pattern = [GLubyte(128), GLubyte(64), GLubyte(128), GLubyte(0), GLubyte(192), GLubyte(0)]
 const targetWidth = 512
 const targetHeight = 512
 
@@ -86,8 +85,9 @@ proc tick*(game: Game) =
   e.invert(camera)
   e.rotateX(rx)
   e.rotateY(ry)
+  e.scale(1.15f, 1.15f, 1.15f)
   render(game, e)
 
-  rx += 1.0f * game.deltaTime
+  rx += 0.5f * game.deltaTime
   ry += 0.5f * game.deltaTime
 
