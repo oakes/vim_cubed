@@ -56,6 +56,7 @@ const threeDTextureVertexShader* =
   {
     gl_Position = u_matrix * a_position;
     v_texcoord = a_texcoord;
+    v_texcoord.y = 1.0 - v_texcoord.y; // flip y axis
   }
   """
 
