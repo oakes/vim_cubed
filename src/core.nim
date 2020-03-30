@@ -1,11 +1,12 @@
 import nimgl/opengl
-import paranim/gl, paranim/gl/uniforms, paranim/gl/attributes
+import paranim/gl, paranim/gl/uniforms, paranim/gl/attributes, paranim/gl/entities
 import paranim/math as pmath
 import common, data
 from bitops import bitor
 from std/math import nil
 import glm
 from paravim/core as paravim import nil
+import stb_image/read as stbi
 
 type
   ThreeDMetaTextureEntityUniforms = tuple[u_matrix: Uniform[Mat4x4[GLfloat]], u_texture: Uniform[RenderToTexture[GLubyte, Game]]]
@@ -31,11 +32,18 @@ proc initThreeDMetaTextureEntity(posData: openArray[GLfloat], texcoordData: open
     u_texture: Uniform[RenderToTexture[GLubyte, Game]](data: image)
   )
 
-var entity: ThreeDMetaTextureEntity
-var rx = degToRad(180f)
-var ry = degToRad(40f)
-const targetWidth = 512
-const targetHeight = 512
+var
+  entity: ThreeDMetaTextureEntity
+  imageEntity: ImageEntity
+  rx = degToRad(180f)
+  ry = degToRad(40f)
+  imageWidth: int
+  imageHeight: int
+
+const
+  targetWidth = 512
+  targetHeight = 512
+  image = staticRead("assets/bg.jpg")
 
 proc init*(game: var Game) =
   doAssert glInit()
@@ -69,12 +77,34 @@ proc init*(game: var Game) =
 
   entity = compile(game, initThreeDMetaTextureEntity(cube, cubeTexcoords, outerImage))
 
-proc tick*(game: Game) =
-  glEnable(GL_CULL_FACE)
+  var
+    channels: int
+    data: seq[uint8]
+  data = stbi.loadFromMemory(cast[seq[uint8]](image), imageWidth, imageHeight, channels, stbi.RGBA)
+  imageEntity = compile(game, initImageEntity(data, imageWidth, imageHeight))
 
+proc tick*(game: Game) =
   glClearColor(1f, 1f, 1f, 1f)
   glClear(GLbitfield(bitor(GL_COLOR_BUFFER_BIT.ord, GL_DEPTH_BUFFER_BIT.ord)))
   glViewport(0, 0, GLsizei(game.frameWidth), GLsizei(game.frameHeight))
+
+  block:
+    glDisable(GL_CULL_FACE)
+    let
+      frameRatio = game.frameWidth.float / game.frameHeight.float
+      imageRatio = imageWidth.float / imageHeight.float
+      (width, height) =
+        if frameRatio > imageRatio:
+          (game.frameWidth.float, game.frameWidth.float * (imageHeight.float / imageWidth.float))
+        else:
+          (game.frameHeight.float * imageRatio, game.frameHeight.float)
+    var e = imageEntity
+    e.project(float(game.frameWidth), float(game.frameHeight))
+    e.translate(0f, 0f)
+    e.scale(width, height)
+    render(game, e)
+
+  glEnable(GL_CULL_FACE)
 
   var camera = mat4f(1)
   camera.translate(0f, 0f, 2f)
