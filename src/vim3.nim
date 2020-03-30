@@ -2,6 +2,7 @@ import nimgl/glfw
 import common
 from core import nil
 from paravim import nil
+from os import nil
 
 var game = Game()
 
@@ -39,7 +40,8 @@ when isMainModule:
   w.getFramebufferSize(width.addr, height.addr)
   w.frameSizeCallback(width, height)
 
-  paravim.init(game, w)
+  let params = os.commandLineParams()
+  paravim.init(game, w, params)
   core.init(game)
 
   game.totalTime = glfwGetTime()
