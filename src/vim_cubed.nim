@@ -32,7 +32,7 @@ when isMainModule:
   glfwWindowHint(GLFWOpenglProfile, GLFW_OPENGL_CORE_PROFILE)
   glfwWindowHint(GLFWResizable, GLFW_TRUE)
 
-  let w: GLFWWindow = glfwCreateWindow(1024, 768, "Vim Cubed")
+  let w: GLFWWindow = glfwCreateWindow(1024, 768, "Vim Cubed - You can begin by typing `:e path/to/myfile.txt`")
   if w == nil:
     quit(-1)
 

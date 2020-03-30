@@ -47,7 +47,8 @@ proc init*(game: var Game) =
 
   paravim.onWindowResize(targetWidth, targetHeight)
   paravim.fontDec()
-  paravim.fontDec()
+
+  paravim.insert(paravim.session, paravim.Global, paravim.AsciiArt, "")
 
   let outerImage = RenderToTexture[GLubyte, Game](
     opts: TextureOpts(
