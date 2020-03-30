@@ -11,10 +11,6 @@ type
     totalTime*: float
     frameWidth*: int
     frameHeight*: int
-    windowWidth*: int
-    windowHeight*: int
-    mouseX*: float
-    mouseY*: float
 
 proc project*[UniT, AttrT](entity: var Entity[UniT, AttrT], left: GLfloat, right: GLfloat, bottom: GLfloat, top: GLfloat, near: GLfloat, far: GLfloat) =
   entity.uniforms.u_matrix.project(left, right, bottom, top, near, far)

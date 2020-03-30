@@ -11,14 +11,6 @@ proc keyCallback(window: GLFWWindow, key: int32, scancode: int32, action: int32,
 proc charCallback(window: GLFWWindow, codepoint: uint32) {.cdecl.} =
   paravim.charCallback(window, codepoint)
 
-proc mouseButtonCallback(window: GLFWWindow, button: int32, action: int32, mods: int32) {.cdecl.} =
-  paravim.mouseButtonCallback(window, button, action, mods)
-
-proc cursorPosCallback(window: GLFWWindow, xpos: float64, ypos: float64) {.cdecl.} =
-  paravim.cursorPosCallback(window, xpos, ypos)
-  game.mouseX = xpos
-  game.mouseY = ypos
-
 proc frameSizeCallback(window: GLFWWindow, width: int32, height: int32) {.cdecl.} =
   game.frameWidth = width
   game.frameHeight = height
@@ -41,8 +33,6 @@ when isMainModule:
 
   discard w.setKeyCallback(keyCallback)
   discard w.setCharCallback(charCallback)
-  discard w.setMouseButtonCallback(mouseButtonCallback)
-  discard w.setCursorPosCallback(cursorPosCallback)
   discard w.setFramebufferSizeCallback(frameSizeCallback)
 
   var width, height: int32
