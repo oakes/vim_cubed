@@ -35,8 +35,8 @@ var entity: ThreeDMetaTextureEntity
 var rx = degToRad(190f)
 var ry = degToRad(40f)
 const pattern = [GLubyte(128), GLubyte(64), GLubyte(128), GLubyte(0), GLubyte(192), GLubyte(0)]
-const targetWidth = 256
-const targetHeight = 256
+const targetWidth = 512
+const targetHeight = 512
 
 proc init*(game: var Game) =
   doAssert glInit()
@@ -46,7 +46,6 @@ proc init*(game: var Game) =
   glEnable(GL_DEPTH_TEST)
 
   paravim.onWindowResize(targetWidth, targetHeight)
-  paravim.fontDec()
 
   paravim.insert(paravim.session, paravim.Global, paravim.AsciiArt, "")
 
@@ -89,6 +88,6 @@ proc tick*(game: Game) =
   e.rotateY(ry)
   render(game, e)
 
-  rx += 1.2f * game.deltaTime
-  ry += 0.7f * game.deltaTime
+  rx += 1.0f * game.deltaTime
+  ry += 0.5f * game.deltaTime
 
