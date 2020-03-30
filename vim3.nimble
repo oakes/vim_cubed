@@ -5,10 +5,10 @@ author        = "oakes"
 description   = "Vim for masochists"
 license       = "Public Domain"
 srcDir        = "src"
-bin           = @["vim_cubed"]
+bin           = @["vim3"]
 
 task dev, "Run dev version":
-  exec "nimble run vim_cubed"
+  exec "nimble run vim3"
 
 # Dependencies
 
