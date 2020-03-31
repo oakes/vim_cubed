@@ -73,6 +73,7 @@ proc init*(game: var Game) =
     render: proc (game: Game) =
       glDisable(GL_CULL_FACE)
       paravim.tick(game, true)
+      glEnable(GL_CULL_FACE)
   )
 
   entity = compile(game, initThreeDMetaTextureEntity(cube, cubeTexcoords, outerImage))
@@ -103,8 +104,6 @@ proc tick*(game: Game) =
     e.translate(0f, 0f)
     e.scale(width, height)
     render(game, e)
-
-  glEnable(GL_CULL_FACE)
 
   var camera = mat4f(1)
   camera.translate(0f, 0f, 2f)
