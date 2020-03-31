@@ -7,6 +7,7 @@ from std/math import nil
 import glm
 from paravim/core as paravim import nil
 import stb_image/read as stbi
+from pararules import nil
 
 type
   ThreeDMetaTextureEntityUniforms = tuple[u_matrix: Uniform[Mat4x4[GLfloat]], u_texture: Uniform[RenderToTexture[GLubyte, Game]]]
@@ -40,10 +41,7 @@ var
   imageWidth: int
   imageHeight: int
 
-const
-  targetWidth = 512
-  targetHeight = 512
-  image = staticRead("assets/bg.jpg")
+const image = staticRead("assets/bg.jpg")
 
 proc init*(game: var Game) =
   doAssert glInit()
@@ -52,16 +50,18 @@ proc init*(game: var Game) =
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
   glEnable(GL_DEPTH_TEST)
 
-  paravim.onWindowResize(targetWidth, targetHeight)
-
+  let
+    windowWidth = pararules.query(paravim.session, paravim.rules.getWindow).windowWidth
+    cubeSize = int(windowWidth / 2)
+  paravim.onWindowResize(cubeSize, cubeSize)
   paravim.insert(paravim.session, paravim.Global, paravim.AsciiArt, "")
 
   let outerImage = RenderToTexture[GLubyte, Game](
     opts: TextureOpts(
       mipLevel: 0,
       internalFmt: GL_RGBA,
-      width: GLsizei(targetWidth),
-      height: GLsizei(targetHeight),
+      width: GLsizei(cubeSize),
+      height: GLsizei(cubeSize),
       border: 0,
       srcFmt: GL_RGBA
     ),
