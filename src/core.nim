@@ -117,6 +117,3 @@ proc tick*(game: Game) =
   e.scale(1.15f, 1.15f, 1.15f)
   render(game, e)
 
-  rx += 0.5f * game.deltaTime
-  ry += 0.5f * game.deltaTime
-
