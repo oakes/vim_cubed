@@ -50,4 +50,8 @@ You might also need to do `sudo apt install libtinfo5`
 
 ### I use arch btw
 
-Try this: `sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5`
+Install [ncurses5-compat-libs](https://aur.archlinux.org/packages/ncurses5-compat-libs/) from the [AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository):
+
+```bash
+yay -S ncurses5-compat-libs
+```
