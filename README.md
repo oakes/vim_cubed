@@ -51,3 +51,11 @@ You might also need to do `sudo apt install libtinfo5`
 ### I use arch btw
 
 Try this: `sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5`
+
+### The big question here: Why
+
+You may not share our intellect
+Which might explain your disrespect
+For all the natural wonders that grow around you
+
+So long, so long and thanks for all the fish
