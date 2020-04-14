@@ -15,6 +15,7 @@ nimble run vim3
 Once you're ready to start using it as your main editor, do:
 
 ```
+nimble install paravim
 nimble install
 ```
 
