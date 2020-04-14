@@ -43,7 +43,7 @@ proc degToRad*(degrees: GLfloat): GLfloat =
 
 const threeDTextureVertexShader* =
   """
-  #version 410
+  #version 330
   uniform mat4 u_matrix;
   in vec4 a_position;
   in vec2 a_texcoord;
@@ -58,7 +58,7 @@ const threeDTextureVertexShader* =
 
 const threeDTextureFragmentShader* =
   """
-  #version 410
+  #version 330
   precision mediump float;
   uniform sampler2D u_texture;
   in vec2 v_texcoord;
