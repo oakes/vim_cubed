@@ -2,6 +2,8 @@ import nimgl/glfw
 import common
 from core import nil
 from paravim import nil
+from paravim/core as vim import nil
+from pararules import nil
 from os import nil
 
 var game = Game()
@@ -46,13 +48,28 @@ when isMainModule:
 
   game.totalTime = glfwGetTime()
 
+  var isStopped = false
+
   while not w.windowShouldClose:
     let ts = glfwGetTime()
-    game.deltaTime = ts - game.totalTime
+
+    let x = pararules.query(vim.session, vim.rules.getVim).commandText
+
+    if x == "stop_spin":
+      isStopped = true
+    elif x == "start_spin":
+      isStopped = false
+    
+    if isStopped == true:
+      game.deltaTime = 0
+    elif isStopped == false:
+      game.deltaTime = ts - game.totalTime
+
     game.totalTime = ts
     core.tick(game)
     w.swapBuffers()
     glfwPollEvents()
+
 
   w.destroyWindow()
   glfwTerminate()

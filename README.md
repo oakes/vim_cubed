@@ -31,9 +31,13 @@ vim3 path/to/myfile.txt
 
 It's not that hard
 
-### How do i stop the cube from spinning
+### How do i stop the cube from spinning?
 
-no
+no, unless you're an absolute buzzkill
+
+':stop_spin' to stop spin
+
+':start_spin' to start spin again
 
 ### I don't even have vim installed, how is this possible?
 
