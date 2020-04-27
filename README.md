@@ -35,9 +35,15 @@ It's not that hard
 
 no, unless you're an absolute buzzkill
 
-':stop_spin' to stop spin
+':stop' to stop spin
 
-':start_spin' to start spin again
+':start' to start spin again
+
+### How do i change the speed of the cube's spin?
+
+':faster' for faster spin
+
+':slower' for slower spin
 
 ### I don't even have vim installed, how is this possible?
 
