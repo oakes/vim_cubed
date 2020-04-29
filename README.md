@@ -62,3 +62,7 @@ You might also need to do `sudo apt install libtinfo5`
 ### I use arch btw
 
 Try this: `sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5`
+
+### How do I change the background to show a picture of MC Hammer?
+
+Enter ":stop" and then ":hammer_time"
