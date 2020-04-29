@@ -73,11 +73,15 @@ when isMainModule:
         elif x == "slower":
           speed -= (speed * 0.5)
         hasCommand = true
-
     if isStopped == true:
       game.deltaTime = 0
+      if x == "hammer_time":
+        isStopped = false
+        game.isHammerTime = true
     elif isStopped == false:
       game.deltaTime = (ts - game.totalTime) * speed
+
+      
 
     game.totalTime = ts
     core.tick(game)
