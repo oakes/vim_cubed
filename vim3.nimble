@@ -14,5 +14,5 @@ task dev, "Run dev version":
 
 requires "nim >= 1.0.6"
 requires "paranim >= 0.6.0"
-requires "paravim >= 0.11.0"
+requires "paravim >= 0.13.0"
 requires "stb_image >= 2.5"

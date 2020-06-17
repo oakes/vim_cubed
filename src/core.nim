@@ -5,7 +5,8 @@ import common, data
 from bitops import bitor
 from std/math import nil
 import glm
-from paravim/core as paravim import nil
+from paravim/core as paravim_core import nil
+from paravim import nil
 import stb_image/read as stbi
 from pararules import nil
 
@@ -51,10 +52,10 @@ proc init*(game: var Game) =
   glEnable(GL_DEPTH_TEST)
 
   let
-    windowWidth = pararules.query(paravim.session, paravim.rules.getWindow).windowWidth
+    windowWidth = pararules.query(paravim_core.session, paravim_core.rules.getWindow).windowWidth
     cubeSize = int(windowWidth / 2)
-  paravim.onWindowResize(cubeSize, cubeSize)
-  paravim.insert(paravim.session, paravim.Global, paravim.AsciiArt, "")
+  paravim_core.onWindowResize(cubeSize, cubeSize)
+  paravim_core.insert(paravim_core.session, paravim_core.Global, paravim_core.AsciiArt, "")
 
   let outerImage = RenderToTexture[GLubyte, Game](
     opts: TextureOpts(
@@ -72,7 +73,7 @@ proc init*(game: var Game) =
     ],
     render: proc (game: Game) =
       glDisable(GL_CULL_FACE)
-      paravim.tick(game, true)
+      discard paravim.tick(game, true)
       glEnable(GL_CULL_FACE)
   )
 
