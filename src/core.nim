@@ -22,11 +22,11 @@ proc initThreeDMetaTextureEntity(posData: openArray[GLfloat], texcoordData: open
   # position
   var position = Attribute[GLfloat](size: 3, iter: 1)
   new(position.data)
-  position.data[].add(posData)
+  position.data[] = @posData
   # texcoord
   var texcoord = Attribute[GLfloat](size: 2, iter: 1, normalize: true)
   new(texcoord.data)
-  texcoord.data[].add(texcoordData)
+  texcoord.data[] = @texcoordData
   # set attrs and unis
   result.attributes = (a_position: position, a_texcoord: texcoord)
   result.uniforms = (
