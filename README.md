@@ -31,9 +31,19 @@ vim3 path/to/myfile.txt
 
 It's not that hard
 
-### How do i stop the cube from spinning
+### How do i stop the cube from spinning?
 
-no
+no, unless you're an absolute buzzkill
+
+':stop' to stop spin
+
+':start' to start spin again
+
+### How do i change the speed of the cube's spin?
+
+':faster' for faster spin
+
+':slower' for slower spin
 
 ### I don't even have vim installed, how is this possible?
 
@@ -52,3 +62,7 @@ You might also need to do `sudo apt install libtinfo5`
 ### I use arch btw
 
 Try this: `sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5`
+
+### How do I change the background to show a picture of MC Hammer?
+
+Enter ":stop" and then ":hammer_time"

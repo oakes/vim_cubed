@@ -11,6 +11,7 @@ type
     totalTime*: float
     frameWidth*: int
     frameHeight*: int
+    isHammerTime*: bool
 
 proc project*[UniT, AttrT](entity: var Entity[UniT, AttrT], left: GLfloat, right: GLfloat, bottom: GLfloat, top: GLfloat, near: GLfloat, far: GLfloat) =
   entity.uniforms.u_matrix.project(left, right, bottom, top, near, far)

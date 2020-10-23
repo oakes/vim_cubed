@@ -37,12 +37,15 @@ proc initThreeDMetaTextureEntity(posData: openArray[GLfloat], texcoordData: open
 var
   entity: ThreeDMetaTextureEntity
   imageEntity: ImageEntity
+  hammerEntity: ImageEntity
   rx = degToRad(180f)
   ry = degToRad(40f)
   imageWidth: int
   imageHeight: int
 
 const image = staticRead("assets/bg.jpg")
+const hammerTime = staticRead("assets/hammertime.jpg")
+
 
 proc init*(game: var Game) =
   doAssert glInit()
@@ -82,8 +85,11 @@ proc init*(game: var Game) =
   var
     channels: int
     data: seq[uint8]
+    hammerData: seq[uint8]
   data = stbi.loadFromMemory(cast[seq[uint8]](image), imageWidth, imageHeight, channels, stbi.RGBA)
   imageEntity = compile(game, initImageEntity(data, imageWidth, imageHeight))
+  hammerData = stbi.loadFromMemory(cast[seq[uint8]](hammerTime), imageWidth, imageHeight, channels, stbi.RGBA)
+  hammerEntity = compile(game, initImageEntity(hammerData, imageWidth, imageHeight))
 
 proc tick*(game: Game) =
   glClearColor(1f, 1f, 1f, 1f)
@@ -101,6 +107,10 @@ proc tick*(game: Game) =
         else:
           (game.frameHeight.float * imageRatio, game.frameHeight.float)
     var e = imageEntity
+    if game.isHammerTime == true:
+      e = hammerEntity
+    else:
+      e = imageEntity
     e.project(float(game.frameWidth), float(game.frameHeight))
     e.translate(0f, 0f)
     e.scale(width, height)
