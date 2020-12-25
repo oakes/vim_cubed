@@ -37,7 +37,7 @@ It's not that hard.
 
 ### How do I stop the cube from spinning
 
-Don't.
+No.
 
 ### I don't even have vim installed, how is this possible?
 
